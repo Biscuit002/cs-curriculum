@@ -133,6 +133,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5774960653562304022, guid: bc139d8bb8dee439490b05712200dfee,
         type: 3}
+      propertyPath: xSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774960653562304022, guid: bc139d8bb8dee439490b05712200dfee,
+        type: 3}
       propertyPath: overworld
       value: 0
       objectReference: {fileID: 0}
