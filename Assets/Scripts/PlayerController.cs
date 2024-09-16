@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    int coinCount = 0;
+    int coinCount;
 
     public bool overworld;
-    public float xSpeed = 5f;
-    private float xVector = 0f;
-    private float xDirection = 0f;
+    public float xSpeed;
+    private float xVector;
+    private float xDirection;
 
-    public float ySpeed = 5f;
-    private float yVector = 0f;
-    private float yDirection = 0f;
+    public float ySpeed;
+    private float yVector;
+    private float yDirection;
 
     private Rigidbody2D rb;
 
@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
         GetComponentInChildren<TopDown_AnimatorController>().enabled = overworld;
         GetComponentInChildren<Platformer_AnimatorController>().enabled = !overworld; //what do you think ! means?
 
+        xSpeed = 5f;
+        ySpeed = 5f;
         // Get the Rigidbody2D component
         rb = GetComponent<Rigidbody2D>();
 
@@ -39,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // Handle input
-        float xDirection = Input.GetAxis("Horizontal");
+        xDirection = Input.GetAxis("Horizontal");
 
         // Calculate xVector based on input
         xVector = xSpeed * xDirection * Time.deltaTime;
@@ -50,26 +52,14 @@ public class PlayerController : MonoBehaviour
 
         if (overworld)
         {
-            float yDirection = Input.GetAxis("Vertical");
+            yDirection = Input.GetAxis("Vertical");
             yVector = ySpeed * yDirection * Time.deltaTime;
             transform.Translate(0, yVector, 0);
         }
-
-        Debug.Log(coinCount);
     }
 
     //for organization, put other built-in Unity functions here
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Coin"))
-        {
-            Destroy(other.gameObject);
-            coinCount = coinCount + 1;
-
-            print(coinCount);
-        }
-    }
-
+    
     //after all Unity functions, your own functions can go here
 }
