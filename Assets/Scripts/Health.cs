@@ -1,16 +1,14 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Coins : MonoBehaviour
+public class Health : MonoBehaviour
 {
-    int coinCount;
     GameManager gm;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
+        gm.health = 100;
     }
 
     // Update is called once per frame
@@ -18,14 +16,13 @@ public class Coins : MonoBehaviour
     {
         
     }
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Coin"))
+        if (other.gameObject.CompareTag("Spikes"))
         {
-            Destroy(other.gameObject);
-            gm.coins += 1;
+            gm.health -= 10;
 
-            print(gm.coins);
+            print(gm.health);
         }
     }
 }

@@ -35,8 +35,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             GetComponent<Rigidbody2D>().gravityScale = 1;
-        }
-    }
+        } 
+
+    } 
 
     private void Update()
     {
@@ -57,6 +58,8 @@ public class PlayerController : MonoBehaviour
             transform.Translate(0, yVector, 0);
         }
     }
+
+
 
     //for organization, put other built-in Unity functions here
 

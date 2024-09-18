@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager gm;
     public int coins;
+    public int health;
 
     private void Awake()
     {
