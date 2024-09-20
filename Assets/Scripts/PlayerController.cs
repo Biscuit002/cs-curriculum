@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     int coinCount;
-
+    
     public bool overworld;
     public float xSpeed;
     private float xVector;
@@ -17,12 +18,11 @@ public class PlayerController : MonoBehaviour
     private float yDirection;
 
     private Rigidbody2D rb;
-
     private void Start()
     {
         GetComponentInChildren<TopDown_AnimatorController>().enabled = overworld;
         GetComponentInChildren<Platformer_AnimatorController>().enabled = !overworld; //what do you think ! means?
-
+        
         xSpeed = 5f;
         ySpeed = 5f;
         // Get the Rigidbody2D component
@@ -41,6 +41,17 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+
+        if (sceneName == "Overworld")
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 0f;
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 1f;
+        }
         // Handle input
         xDirection = Input.GetAxis("Horizontal");
 

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -23,6 +24,12 @@ public class Health : MonoBehaviour
             gm.health -= 10;
 
             print(gm.health);
+
+            if (gm.health == 0)
+            {
+                print("You Lose");
+                Time.timeScale = 0;
+            }
         }
     }
 }
