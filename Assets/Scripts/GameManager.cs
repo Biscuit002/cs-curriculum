@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,7 +8,10 @@ public class GameManager : MonoBehaviour
     public static GameManager gm;
     public int coins;
     public int health;
-
+    public TextMeshProUGUI coinsText;
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI gameOver;
+    
     private void Awake()
     {
         if (gm != null && gm != this)
@@ -19,15 +24,24 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Start()
     {
-        
+        coinsText.text = "Coins: " + coins;
+        healthText.text = "Health: " + health;
+        gameOver.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        coinsText.text = "Coins: " + coins;
+        healthText.text = "Health: " + health;
         
+        if (gm.health == 0)
+        {
+            Time.timeScale = 0;
+            gameOver.enabled = true;
+
+        }
     }
 }

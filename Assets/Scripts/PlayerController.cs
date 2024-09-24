@@ -41,17 +41,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        string sceneName = currentScene.name;
-
-        if (sceneName == "Overworld")
-        {
-            GetComponent<Rigidbody2D>().gravityScale = 0f;
-        }
-        else
-        {
-            GetComponent<Rigidbody2D>().gravityScale = 1f;
-        }
         // Handle input
         xDirection = Input.GetAxis("Horizontal");
 
