@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class GameManager : MonoBehaviour
     public int health;
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI healthText;
-    public TextMeshProUGUI gameOver;
     
     private void Awake()
     {
@@ -29,19 +29,26 @@ public class GameManager : MonoBehaviour
     {
         coinsText.text = "Coins: " + coins;
         healthText.text = "Health: " + health;
-        gameOver.enabled = false;
     }
 
     private void Update()
     {
         coinsText.text = "Coins: " + coins;
         healthText.text = "Health: " + health;
-        
-        if (gm.health == 0)
-        {
-            Time.timeScale = 0;
-            gameOver.enabled = true;
 
+        if (health == 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        if (health == 0)
+        {
+            SceneManager.LoadScene("Start");
+            coins = 0;
+            health = 100;
         }
     }
 }
