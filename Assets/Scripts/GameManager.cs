@@ -35,11 +35,8 @@ public class GameManager : MonoBehaviour
     {
         coinsText.text = "Coins: " + coins;
         healthText.text = "Health: " + health;
-
-        if (health == 0)
-        {
+        
             Die();
-        }
     }
 
     private void Die()

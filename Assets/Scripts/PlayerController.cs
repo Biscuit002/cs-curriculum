@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     private float yVector;
     private float yDirection;
 
+    public float playerX;
+    public float playerY;
+
     private Rigidbody2D rb;
     private void Start()
     {
@@ -40,6 +43,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        playerX = transform.position.x;
+        playerY = transform.position.y;
+        
         // Handle input
         xDirection = Input.GetAxis("Horizontal");
 
