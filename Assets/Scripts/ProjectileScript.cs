@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
@@ -5,19 +7,28 @@ public class ProjectileScript : MonoBehaviour
     public Vector3 target;
     public PlayerController playerController;
     private int speed;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Vector3 current;
+    private Vector3 direction;
+    private GameManager gm;
     void Start()
     {
         speed = 5;
+        target = new Vector3(playerController.playerX, playerController.playerY, 0);
+        direction = (target - transform.position).normalized;
     }
-
-    // Update is called once per frame
     void Update()
     {
         Vector3 current = transform.position;
-        target = new Vector3(playerController.playerX, playerController.playerY, 0);
-        print(target);
         Vector3 newPosition = Vector3.MoveTowards(current, target, speed*Time.deltaTime);
+        //transform.position = newPosition;
+        transform.position += speed * direction * Time.deltaTime;
+    }
+
+   void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
