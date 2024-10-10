@@ -40455,6 +40455,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret_Projectile
       objectReference: {fileID: 0}
+    - target: {fileID: 5790822057519619805, guid: d181d0f6b0e116b4298e1e64b89f707e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Projectile
+      objectReference: {fileID: 0}
     - target: {fileID: 7101103389178533185, guid: d181d0f6b0e116b4298e1e64b89f707e,
         type: 3}
       propertyPath: m_LocalScale.x

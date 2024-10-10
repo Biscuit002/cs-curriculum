@@ -19,4 +19,12 @@ public class Health : MonoBehaviour
             gm.health -= 10;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag(("Projectile")))
+        {
+            gm.health -= 10;
+        }
+    }
 }

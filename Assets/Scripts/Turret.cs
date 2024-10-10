@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
@@ -8,30 +9,33 @@ public class Turret : MonoBehaviour
 {
     public GameObject projectileClone;
     public Vector3 spawnPosition;
-    private int maxProjectiles;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private GameObject target;
+    private float cooldown;
+    private float fireRate = 1;
     void Start()
     {
         spawnPosition = new Vector3(transform.position.x, transform.position.y + 0.5f, 0);
+        target = null;
+        cooldown = fireRate;
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void Update()
     {
-
-        if (other.gameObject.CompareTag("Player"))
+        cooldown -= Time.deltaTime;
+        if (cooldown <= 0)
         {
-            if (maxProjectiles < 5)
-            {
-                Instantiate(projectileClone, spawnPosition, quaternion.identity);
-                ProjectileScript cloneScript = projectileClone.GetComponent<ProjectileScript>();
-                maxProjectiles += 1;
-            }
-            else
-            {
-                maxProjectiles = 0;
-            }
-            
-        }
+            Instantiate(projectileClone, spawnPosition, quaternion.identity);
+            ProjectileScript cloneScript = projectileClone.GetComponent<ProjectileScript>();
+            cooldown = fireRate;
+        } 
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        target = other.gameObject;
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        target = null;
     }
 }
