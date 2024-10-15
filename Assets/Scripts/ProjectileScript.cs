@@ -20,7 +20,6 @@ public class ProjectileScript : MonoBehaviour
     {
         Vector3 current = transform.position;
         Vector3 newPosition = Vector3.MoveTowards(current, target, speed*Time.deltaTime);
-        //transform.position = newPosition;
         transform.position += speed * direction * Time.deltaTime;
     }
 
