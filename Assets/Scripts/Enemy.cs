@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     }
     void Start()
     {
-        chaseSpeed = 1f;
+        chaseSpeed = 2f;
     }
     void Update()
     {
@@ -28,31 +28,45 @@ public class Enemy : MonoBehaviour
         {
             Chase();
         }
+        if (state == states.attack)
+        {
+            Attack();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-    {
+    { 
       if (other.CompareTag("Player")) 
       {
           player = other.gameObject;
-          if (player == null)
+          if (player != null)
           {
               state = states.chase;
           }
           else
           {
-              state = states.chase;
+              state = states.attack;
           }
       }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        state = states.patrol;
+        if (player == null)
+        {
+            state = states.patrol;
+        }
+
+        player = null;
     }
 
     void Chase()
     {
         transform.position = Vector3.MoveTowards(transform.position, target, chaseSpeed * Time.deltaTime);
+    }
+
+    void Attack()
+    {
+        //TODO: fill in later
     }
 }

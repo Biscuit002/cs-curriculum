@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        gm.health = 100;
+        gm.health = 99999;
     }
     void OnCollisionEnter2D(Collision2D other)
     {
