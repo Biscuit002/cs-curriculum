@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class TopDown_EnemyAnimator : MonoBehaviour
@@ -9,10 +11,13 @@ public class TopDown_EnemyAnimator : MonoBehaviour
     Vector3 prevPos;
     Animator anim;
 
+    public Enemy enemyAttack;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        enemyAttack = GetComponent<Enemy>();
     }
 
     // Update is called once per frame
@@ -56,6 +61,7 @@ public class TopDown_EnemyAnimator : MonoBehaviour
     // Call this function from another script for the orc to attack!
     public void Attack()
     {
+       // if (enemyAttack.)
         anim.SetTrigger("Attack");
     }
 }

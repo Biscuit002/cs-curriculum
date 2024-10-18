@@ -1,5 +1,7 @@
 using System;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class Enemy : MonoBehaviour
     private float chaseSpeed;
     
     public PlayerController playerController;
+    
     enum states
     {
         patrol,
@@ -24,6 +27,7 @@ public class Enemy : MonoBehaviour
     {
        print(state);
        target = new Vector3(playerController.playerX, playerController.playerY, 0);
+       
         if (state == states.chase)
         {
             Chase();
@@ -32,14 +36,18 @@ public class Enemy : MonoBehaviour
         {
             Attack();
         }
+
+        if (state == states.patrol)
+        {
+            Patrol();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     { 
       if (other.CompareTag("Player")) 
       {
-          player = other.gameObject;
-          if (player != null)
+          if (player == null)
           {
               state = states.chase;
           }
@@ -47,17 +55,25 @@ public class Enemy : MonoBehaviour
           {
               state = states.attack;
           }
+          player = other.gameObject;
       }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (player == null)
+        if (other.CompareTag("Player"))
         {
-            state = states.patrol;
-        }
+            if (player == null)
+            {
+                state = states.patrol;
+            }
+            else
+            {
+                state = states.chase;
+            }
 
-        player = null;
+            player = null;
+        }
     }
 
     void Chase()
@@ -67,6 +83,11 @@ public class Enemy : MonoBehaviour
 
     void Attack()
     {
-        //TODO: fill in later
+
+    }
+
+    void Patrol()
+    {
+        //TODO:Add code
     }
 }
