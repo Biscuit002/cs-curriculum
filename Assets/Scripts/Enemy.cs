@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.Timeline;
 
@@ -7,12 +8,15 @@ public class Enemy : MonoBehaviour
 {
     private Vector3 target;
     private GameObject player;
-    private states state = states.patrol;
+    public states state = states.patrol;
     private float chaseSpeed;
+    private Vector3 waypoint;
+    private float cooldownEnemy;
     
     public PlayerController playerController;
+    public Health health;
     
-    enum states
+    public enum states
     {
         patrol,
         chase,
@@ -22,10 +26,12 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         chaseSpeed = 2f;
+        waypoint = new Vector3(1, 2, 0);
+        cooldownEnemy = 1f;
     }
     void Update()
     {
-       print(state);
+       print(cooldownEnemy);
        target = new Vector3(playerController.playerX, playerController.playerY, 0);
        
         if (state == states.chase)
@@ -83,11 +89,16 @@ public class Enemy : MonoBehaviour
 
     void Attack()
     {
-
+        cooldownEnemy = cooldownEnemy - Time.deltaTime;
+        if (cooldownEnemy <= 0)
+        {
+            health.gm.health -= 10;
+            cooldownEnemy = 1;
+        }
     }
 
     void Patrol()
     {
-        //TODO:Add code
+        transform.position = Vector3.MoveTowards(transform.position, waypoint, chaseSpeed * Time.deltaTime);
     }
 }

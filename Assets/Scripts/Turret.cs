@@ -21,13 +21,16 @@ public class Turret : MonoBehaviour
 
     private void Update()
     {
-        cooldown -= Time.deltaTime;
-        if (cooldown <= 0)
+        if (target != null)
         {
-            Instantiate(projectileClone, spawnPosition, quaternion.identity);
-            ProjectileScript cloneScript = projectileClone.GetComponent<ProjectileScript>();
-            cooldown = fireRate;
-        } 
+            cooldown -= Time.deltaTime;
+            if (cooldown <= 0)
+            {
+                Instantiate(projectileClone, spawnPosition, quaternion.identity);
+                ProjectileScript cloneScript = projectileClone.GetComponent<ProjectileScript>();
+                cooldown = fireRate;
+            } 
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

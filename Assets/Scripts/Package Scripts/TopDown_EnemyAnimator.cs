@@ -11,13 +11,13 @@ public class TopDown_EnemyAnimator : MonoBehaviour
     Vector3 prevPos;
     Animator anim;
 
-    public Enemy enemyAttack;
+    private Enemy enemyAttack;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-        enemyAttack = GetComponent<Enemy>();
+        enemyAttack = FindObjectOfType<Enemy>();
     }
 
     // Update is called once per frame
@@ -55,13 +55,20 @@ public class TopDown_EnemyAnimator : MonoBehaviour
             Attack();
         }
 
+        if (enemyAttack != null)
+        {
+            if (enemyAttack.state == Enemy.states.attack)
+            {
+                Attack();
+            }
+        }
+        
         IsAttacking = anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack");
     }
 
     // Call this function from another script for the orc to attack!
-    public void Attack()
+    private void Attack()
     {
-       // if (enemyAttack.)
         anim.SetTrigger("Attack");
     }
 }

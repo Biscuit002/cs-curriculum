@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-    GameManager gm;
+    public GameManager gm;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        gm.health = 99999;
+        gm.health = 100;
     }
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -22,9 +22,10 @@ public class Health : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag(("Projectile")))
+        if (other.gameObject.CompareTag("Projectile"))
         {
             gm.health -= 10;
         }
+        
     }
 }
