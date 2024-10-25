@@ -1,8 +1,6 @@
 using System;
-using System.IO;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
-using UnityEngine.Timeline;
+using Random = System.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -26,12 +24,11 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         chaseSpeed = 2f;
-        waypoint = new Vector3(1, 2, 0);
         cooldownEnemy = 1f;
+        waypoint = new Vector3(UnityEngine.Random.Range(-100, 100), UnityEngine.Random.Range(-100,100), 0);
     }
     void Update()
     {
-       print(cooldownEnemy);
        target = new Vector3(playerController.playerX, playerController.playerY, 0);
        
         if (state == states.chase)
@@ -62,6 +59,7 @@ public class Enemy : MonoBehaviour
               state = states.attack;
           }
           player = other.gameObject;
+          waypoint = new Vector3(UnityEngine.Random.Range(-100, 100), UnityEngine.Random.Range(-100,100), 0);
       }
     }
 

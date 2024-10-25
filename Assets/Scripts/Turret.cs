@@ -3,6 +3,7 @@ using System.Numerics;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using Quaternion = System.Numerics.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
 public class Turret : MonoBehaviour
@@ -21,13 +22,13 @@ public class Turret : MonoBehaviour
 
     private void Update()
     {
+        cooldown -= Time.deltaTime;
+        print(target);
         if (target != null)
         {
-            cooldown -= Time.deltaTime;
             if (cooldown <= 0)
             {
-                Instantiate(projectileClone, spawnPosition, quaternion.identity);
-                ProjectileScript cloneScript = projectileClone.GetComponent<ProjectileScript>();
+                Fire();
                 cooldown = fireRate;
             } 
         }
@@ -35,10 +36,23 @@ public class Turret : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        target = other.gameObject;
+        if (other.CompareTag("Player"))
+        {
+            target = other.gameObject;
+        }
     }
+
     private void OnTriggerExit2D(Collider2D other)
     {
-        target = null;
+        if (other.CompareTag("Player"))
+        {
+            target = null;  
+        }
+    }
+
+    void Fire()
+    {
+        Instantiate(projectileClone, spawnPosition, UnityEngine.Quaternion.identity);
+        ProjectileScript cloneScript = projectileClone.GetComponent<ProjectileScript>();
     }
 }
