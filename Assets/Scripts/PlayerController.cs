@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime;
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour
     int coinCount;
     
     public bool overworld;
+    public bool hasAxe;
     public float xSpeed;
     private float xVector;
     private float xDirection;
@@ -64,6 +66,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Axe"))
+        {
+            hasAxe = true;
+        }
+    }
 
 
     //for organization, put other built-in Unity functions here

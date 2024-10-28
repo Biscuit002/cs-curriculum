@@ -23,7 +23,6 @@ public class Turret : MonoBehaviour
     private void Update()
     {
         cooldown -= Time.deltaTime;
-        print(target);
         if (target != null)
         {
             if (cooldown <= 0)

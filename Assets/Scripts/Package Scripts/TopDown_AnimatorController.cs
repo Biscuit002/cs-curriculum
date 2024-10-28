@@ -11,6 +11,7 @@ public class TopDown_AnimatorController : MonoBehaviour
     RuntimeAnimatorController animAxe;
 
     public bool IsAttacking { get; private set; }
+    private PlayerController playerController;
 
     Animator anim;
     SpriteRenderer sprite;
@@ -20,6 +21,7 @@ public class TopDown_AnimatorController : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.runtimeAnimatorController = animShovel;
         sprite = GetComponent<SpriteRenderer>();
+        playerController = FindObjectOfType<PlayerController>();
 
         //start off facing to the right.
         anim.SetBool("IsWalking", false);
@@ -30,6 +32,10 @@ public class TopDown_AnimatorController : MonoBehaviour
 
     private void Update()
     {
+        if (playerController.hasAxe == true)
+        {
+            SwitchToAxe();
+        }
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             if (Input.GetAxis("Horizontal") != 0 && Input.GetAxis("Vertical") != 0)
