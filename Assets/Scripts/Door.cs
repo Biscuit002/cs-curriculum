@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Input = UnityEngine.Windows.Input;
 
 public class Door : MonoBehaviour
 {
@@ -10,15 +9,9 @@ public class Door : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay2D(Collider2D other)
     {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player") && playerController.hasAxe == true)
+        if (other.CompareTag("Player") && playerController.hasAxe && Input.GetMouseButtonDown(0))
         {
             Destroy(this.gameObject);
         }
