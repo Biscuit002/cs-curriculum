@@ -261,8 +261,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   overworld: 1
+  hasAxe: 0
   xSpeed: 5
   ySpeed: 5
+  playerX: 0
+  playerY: 0
 --- !u!114 &2818185740119424649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,3 +290,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 679ccd78c67f0418aaae549a6d771543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
