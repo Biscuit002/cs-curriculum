@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-    private GameManager gm;
+    public GameManager gm;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
