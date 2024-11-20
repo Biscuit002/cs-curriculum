@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Spikes"))
+        if (other.gameObject.CompareTag("Spikes") || other.gameObject.CompareTag("Enemy(Cave)"))
         {
             gm.health -= 10;
         }
