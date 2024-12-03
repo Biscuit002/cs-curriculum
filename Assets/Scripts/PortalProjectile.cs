@@ -5,7 +5,7 @@ public class PortalProjectile : MonoBehaviour
     private Rigidbody2D rb;
     private float speed;
     private bool isFiring;
-    private float distanceToPlayer;
+    private Vector3 targetPosition; 
     
     public PlayerController playerController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -13,23 +13,31 @@ public class PortalProjectile : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerController = FindObjectOfType<PlayerController>();
-        speed = 0.01f;
+        speed = 40f;
         isFiring = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        distanceToPlayer = Vector3.Distance((new Vector3(playerController.playerX, playerController.playerY, 0)), Input.mousePosition);
+        targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        targetPosition.z = 0;
 
         if (!isFiring)
         {
-            transform.position = new Vector3(playerController.playerX + 5, playerController.playerY, 0);
+            transform.position = new Vector3(playerController.playerX, playerController.playerY, 0);
         }
+
         if (Input.GetMouseButtonDown(1))
         {
+            rb.linearVelocity = Vector2.zero;
+            isFiring = false;
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
             isFiring = true;
-            rb.AddForce(Input.mousePosition * speed, ForceMode2D.Impulse);
+            Vector3 direction = (targetPosition - transform.position);
+            rb.AddForce(direction * speed, ForceMode2D.Impulse);
         }
     }
 }

@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     }
     void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
         chaseSpeed = 2f;
         cooldownEnemy = 1f;
         waypoint = new Vector3(UnityEngine.Random.Range(-100, 100), UnityEngine.Random.Range(-100,100), 0);

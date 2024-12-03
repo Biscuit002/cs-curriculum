@@ -12,6 +12,7 @@ public class ProjectileScript : MonoBehaviour
     private GameManager gm;
     void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
         speed = 5;
         target = new Vector3(playerController.playerX, playerController.playerY, 0);
         direction = (target - transform.position).normalized;
