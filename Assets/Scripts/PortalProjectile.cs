@@ -6,6 +6,8 @@ public class PortalProjectile : MonoBehaviour
     private float speed;
     private bool isFiring;
     private Vector3 targetPosition; 
+    public GameObject portal1;
+    GameObject portalClone;
     
     public PlayerController playerController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -13,7 +15,7 @@ public class PortalProjectile : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerController = FindObjectOfType<PlayerController>();
-        speed = 40f;
+        speed = 3f;
         isFiring = false;
     }
 
@@ -37,7 +39,15 @@ public class PortalProjectile : MonoBehaviour
         {
             isFiring = true;
             Vector3 direction = (targetPosition - transform.position);
-            rb.AddForce(direction * speed, ForceMode2D.Impulse);
+            portalClone = Instantiate(portal1, transform.position, Quaternion.identity);
+            portalClone.GetComponent<Rigidbody2D>().AddForce(direction * speed, ForceMode2D.Impulse);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player") || !collision.gameObject.CompareTag("Portal1"))
+        {
+            Destroy(portalClone);
         }
     }
 }
