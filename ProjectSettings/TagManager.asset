@@ -11,7 +11,7 @@ TagManager:
   - Wall
   - Projectile
   - Enemy(Cave)
-  - Portal1
+  - Portal
   layers:
   - Default
   - TransparentFX

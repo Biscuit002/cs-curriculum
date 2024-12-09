@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 public class PortalProjectile : MonoBehaviour
@@ -6,8 +7,9 @@ public class PortalProjectile : MonoBehaviour
     private float speed;
     private bool isFiring;
     private Vector3 targetPosition; 
-    public GameObject portal1;
-    GameObject portalClone;
+    public GameObject portal1Projectile;
+    public GameObject portal1Portal;
+    public GameObject portalProjectileClone;
     
     public PlayerController playerController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -15,7 +17,7 @@ public class PortalProjectile : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerController = FindObjectOfType<PlayerController>();
-        speed = 3f;
+        speed = 50f;
         isFiring = false;
     }
 
@@ -38,16 +40,17 @@ public class PortalProjectile : MonoBehaviour
         if (Input.GetMouseButtonUp(1))
         {
             isFiring = true;
-            Vector3 direction = (targetPosition - transform.position);
-            portalClone = Instantiate(portal1, transform.position, Quaternion.identity);
-            portalClone.GetComponent<Rigidbody2D>().AddForce(direction * speed, ForceMode2D.Impulse);
+            Vector2 direction = (targetPosition - transform.position);
+            portalProjectileClone = Instantiate(portal1Projectile, transform.position, Quaternion.identity);
+            portalProjectileClone.GetComponent<Rigidbody2D>().AddForce(direction * speed, ForceMode2D.Impulse);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!collision.gameObject.CompareTag("Player") || !collision.gameObject.CompareTag("Portal1"))
+        if (!other.CompareTag("Player") && !other.CompareTag("Portal"))
         {
-            Destroy(portalClone);
+            Destroy(portalProjectileClone);
+            //Instantiate(portal1Portal, transform.position, Quaternion.identity);
         }
     }
 }
