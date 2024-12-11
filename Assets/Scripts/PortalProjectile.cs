@@ -17,7 +17,7 @@ public class PortalProjectile : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerController = FindObjectOfType<PlayerController>();
-        speed = 50f;
+        speed = 2f;
         isFiring = false;
     }
 
@@ -42,15 +42,16 @@ public class PortalProjectile : MonoBehaviour
             isFiring = true;
             Vector2 direction = (targetPosition - transform.position);
             portalProjectileClone = Instantiate(portal1Projectile, transform.position, Quaternion.identity);
-            portalProjectileClone.GetComponent<Rigidbody2D>().AddForce(direction * speed, ForceMode2D.Impulse);
+            rb.AddForce(direction * speed, ForceMode2D.Impulse);
         }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player") && !other.CompareTag("Portal"))
+        if (other.CompareTag("CaveWalls"))
         {
-            Destroy(portalProjectileClone);
-            //Instantiate(portal1Portal, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            Instantiate(portal1Portal, transform.position, Quaternion.identity);
         }
     }
 }

@@ -6,6 +6,7 @@ public class CavePlayerScript : MonoBehaviour
     public float length;
     private float jumpForce;
     Rigidbody2D rb;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,8 +19,8 @@ public class CavePlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(transform.position.x - collider2d.bounds.center.x, transform.position.y), Vector2.down, length);
-        RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(transform.position.x + collider2d.bounds.center.x, transform.position.y), Vector2.down, length);
+        RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(transform.position.x - collider2d.bounds.extents.x, transform.position.y), Vector2.down, length);
+        RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(transform.position.x + collider2d.bounds.extents.x, transform.position.y), Vector2.down, length);
         Debug.DrawRay(new Vector2(transform.position.x - collider2d.bounds.extents.x, transform.position.y), Vector2.down * length, Color.red);
         Debug.DrawRay(new Vector2(transform.position.x + collider2d.bounds.extents.x, transform.position.y), Vector2.down * length, Color.red);
 

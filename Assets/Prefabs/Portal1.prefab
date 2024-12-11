@@ -103,7 +103,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b8cf334f65c42b8895f08c7503f174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  portal1Projectile: {fileID: 9054139484723989078}
+  portal1Portal: {fileID: 749563067520029388, guid: e6a3d4d7d0a7a4b89b7554a419212b2a,
+    type: 3}
+  portalProjectileClone: {fileID: 9054139484723989078}
+  instantiatedPortal: {fileID: 749563067520029388, guid: e6a3d4d7d0a7a4b89b7554a419212b2a,
+    type: 3}
+  playerController: {fileID: 5774960653562304022, guid: bc139d8bb8dee439490b05712200dfee,
+    type: 3}
 --- !u!50 &7748185605305373776
 Rigidbody2D:
   serializedVersion: 5
@@ -161,7 +168,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c6bef87c2e740ad89d0c993533982a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portal2: {fileID: 0}
+  portal2: {fileID: 5966138816165716680, guid: cd26ed7b6d9434da79a9ba66db973671, type: 3}
 --- !u!70 &2138395354725776119
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

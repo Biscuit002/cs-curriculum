@@ -12,6 +12,7 @@ TagManager:
   - Projectile
   - Enemy(Cave)
   - Portal
+  - CaveWalls
   layers:
   - Default
   - TransparentFX
