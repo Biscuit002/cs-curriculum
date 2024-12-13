@@ -1,34 +1,43 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Portal1 : MonoBehaviour
 {
     private Vector2 newLocation;
-    private float cooldown;
     public GameObject portal2;
+    public Portal2 portal2Script;
+    private static Portal1 existingPortal;
 
     void Start()
     {
+        if (existingPortal != null)
+        {
+            Destroy(existingPortal.gameObject);
+        }
+        existingPortal = this;
+
         portal2 = GameObject.Find("Portal2Portal");
-        cooldown = 0;
+        portal2Script = portal2.GetComponent<Portal2>();
     }
 
     void Update()
     {
-        if (cooldown > 0)
-        {
-            cooldown -= Time.deltaTime; // Use Time.deltaTime for frame-rate independent decrement
-        }
-        print(cooldown);
+       
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && cooldown <= 0)
+        if (collision.gameObject.CompareTag("Player"))
         {
             newLocation = portal2.transform.position;
             collision.gameObject.transform.position = newLocation;
-            cooldown = 2; // Reset cooldown immediately after teleportation
+            //portal2Script.inPortal = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //portal2Script.inPortal = false;
         }
     }
 }

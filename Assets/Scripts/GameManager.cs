@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager gm;
     public int coins;
+    
     public int health;
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI healthText;

@@ -6,10 +6,12 @@ public class PortalProjectile : MonoBehaviour
     private Rigidbody2D rb;
     private float speed;
     private bool isFiring;
+    private int portalNumber;
     private Vector3 targetPosition; 
     public GameObject portal1Projectile;
     public GameObject portal1Portal;
     public GameObject portalProjectileClone;
+    public GameObject portal2Portal;
     
     public PlayerController playerController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,6 +21,7 @@ public class PortalProjectile : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
         speed = 2f;
         isFiring = false;
+        portalNumber = 1;
     }
 
     // Update is called once per frame
@@ -43,6 +46,14 @@ public class PortalProjectile : MonoBehaviour
             Vector2 direction = (targetPosition - transform.position);
             portalProjectileClone = Instantiate(portal1Projectile, transform.position, Quaternion.identity);
             rb.AddForce(direction * speed, ForceMode2D.Impulse);
+            if (portalNumber == 1)
+            {
+                portalNumber = 2;
+            }
+            else
+            {
+                portalNumber = 1;
+            }
         }
     }
 
@@ -51,7 +62,14 @@ public class PortalProjectile : MonoBehaviour
         if (other.CompareTag("CaveWalls"))
         {
             Destroy(gameObject);
-            Instantiate(portal1Portal, transform.position, Quaternion.identity);
+            if (portalNumber == 1)
+            {
+                Instantiate(portal1Portal, transform.position, Quaternion.identity);
+            }
+            else if (portalNumber == 2)
+            {
+                Instantiate(portal2Portal, transform.position, Quaternion.identity);
+            }
         }
     }
 }
