@@ -6,7 +6,7 @@ public class PortalProjectile : MonoBehaviour
     private Rigidbody2D rb;
     private float speed;
     private bool isFiring;
-    private int portalNumber;
+    public bool isPortal1;
     private Vector3 targetPosition; 
     public GameObject portal1Projectile;
     public GameObject portal1Portal;
@@ -21,7 +21,6 @@ public class PortalProjectile : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
         speed = 2f;
         isFiring = false;
-        portalNumber = 1;
     }
 
     // Update is called once per frame
@@ -29,6 +28,7 @@ public class PortalProjectile : MonoBehaviour
     {
         targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         targetPosition.z = 0;
+        print(isPortal1);
 
         if (!isFiring)
         {
@@ -40,33 +40,36 @@ public class PortalProjectile : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             isFiring = false;
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (isPortal1 == false)
+            {
+                isPortal1 = true;
+            } 
+            else if (isPortal1  != false)
+            {
+                isPortal1 = false;
+            }
+        }
         if (Input.GetMouseButtonUp(1))
         {
             isFiring = true;
             Vector2 direction = (targetPosition - transform.position);
-            portalProjectileClone = Instantiate(portal1Projectile, transform.position, Quaternion.identity);
+            Instantiate(portal1Projectile, transform.position, Quaternion.identity);
             rb.AddForce(direction * speed, ForceMode2D.Impulse);
-            if (portalNumber == 1)
-            {
-                portalNumber = 2;
-            }
-            else
-            {
-                portalNumber = 1;
-            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("CaveWalls"))
+        if (other.CompareTag("CaveWalls") && isFiring == true)
         {
             Destroy(gameObject);
-            if (portalNumber == 1)
+            if (isPortal1 == true)
             {
                 Instantiate(portal1Portal, transform.position, Quaternion.identity);
             }
-            else if (portalNumber == 2)
+            else if (isPortal1 == false)
             {
                 Instantiate(portal2Portal, transform.position, Quaternion.identity);
             }

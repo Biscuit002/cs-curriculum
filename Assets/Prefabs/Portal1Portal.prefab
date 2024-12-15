@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2138395354725776119}
   m_Layer: 0
   m_Name: Portal1Portal
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portal2: {fileID: 5966138816165716680, guid: cd26ed7b6d9434da79a9ba66db973671, type: 3}
+  portal2Script: {fileID: 0}
 --- !u!70 &2138395354725776119
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

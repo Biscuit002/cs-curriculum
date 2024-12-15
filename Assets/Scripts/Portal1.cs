@@ -16,7 +16,7 @@ public class Portal1 : MonoBehaviour
         existingPortal = this;
 
         portal2 = GameObject.Find("Portal2Portal");
-        portal2Script = portal2.GetComponent<Portal2>();
+        portal2Script = FindObjectOfType<Portal2>();
     }
 
     void Update()
@@ -30,14 +30,14 @@ public class Portal1 : MonoBehaviour
         {
             newLocation = portal2.transform.position;
             collision.gameObject.transform.position = newLocation;
-            //portal2Script.inPortal = true;
+            portal2Script.inPortal1 = true;
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            //portal2Script.inPortal = false;
+            portal2Script.inPortal1 = false;
         }
     }
 }
