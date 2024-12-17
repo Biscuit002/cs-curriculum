@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PortalColorGraphic : MonoBehaviour
 {
     public PortalProjectile portalProjectileScript;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,6 +13,12 @@ public class PortalColorGraphic : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        UpdatePortalColor();
+    }
+
+    // Method to update the portal color
+    public void UpdatePortalColor()
     {
         if (portalProjectileScript.isPortal1)
         {

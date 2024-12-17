@@ -14,7 +14,7 @@ public class PortalProjectile : MonoBehaviour
     public GameObject portal2Portal;
     
     public PlayerController playerController;
-    public PortalColorGraphic portalColorGraphic;
+    public PortalColorGraphic portalColorGraphicScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -57,7 +57,7 @@ public class PortalProjectile : MonoBehaviour
             Vector2 direction = (targetPosition - transform.position);
             Instantiate(portal1Projectile, transform.position, Quaternion.identity);
             rb.AddForce(direction * speed, ForceMode2D.Impulse);
-            //portalColorGraphic.UpdatePortalColor();
+            //portalColorGraphicScript.UpdatePortalColor();
         }
     }
 
