@@ -14,7 +14,9 @@ public class Portal2 : MonoBehaviour
             Destroy(existingPortal.gameObject);
         }
         existingPortal = this;
+
         portal1 = GameObject.Find("Portal1Portal");
+        inPortal1 = false;
     }
 
     // Update is called once per frame
@@ -24,15 +26,12 @@ public class Portal2 : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision != null && collision.gameObject!=null)
-            {
-                if (collision.gameObject.CompareTag("Player") && inPortal1 == false && portal1 != null)
-                {
-                    newLocation = portal1.transform.position;
-                    collision.gameObject.transform.position = newLocation;
-                    inPortal1 = true;
-                }
-            }
+        if (collision.gameObject.CompareTag("Player") && inPortal1 == false)
+        {
+            newLocation = portal1.transform.position;
+            collision.gameObject.transform.position = newLocation;
+            inPortal1 = true;
+        }
     }
     void OnTriggerExit2D(Collider2D other)
     {

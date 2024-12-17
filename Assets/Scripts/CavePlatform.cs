@@ -19,7 +19,12 @@ public class CavePlatform : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Enemy(Cave)"))
         {
-            moveSpeed = -moveSpeed;
+            SwitchPlatform();
         }
+    }
+
+    public void SwitchPlatform()
+    {
+        moveSpeed = -moveSpeed;
     }
 }
