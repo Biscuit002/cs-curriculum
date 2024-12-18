@@ -39184,6 +39184,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1451724486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5966138816165716680, guid: cd26ed7b6d9434da79a9ba66db973671,
+    type: 3}
+  m_PrefabInstance: {fileID: 871220222441971848}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1490804441
 GameObject:
   m_ObjectHideFlags: 0
@@ -39273,6 +39279,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portalProjectileScript: {fileID: 1088895684}
+--- !u!1 &1532209907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 749563067520029388, guid: e6a3d4d7d0a7a4b89b7554a419212b2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4191236550508131117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1544724436
 GameObject:
   m_ObjectHideFlags: 0
@@ -39878,7 +39890,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 871220222441971848}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1451724486}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e34df0df3699e443e8c2e8a340c71bb9, type: 3}
@@ -40261,6 +40273,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3720620589392792853, guid: ead4a41f8a08d4d2c8195cfb50eb96ea,
         type: 3}
+      propertyPath: portal1Portal
+      value: 
+      objectReference: {fileID: 1532209907}
+    - target: {fileID: 3720620589392792853, guid: ead4a41f8a08d4d2c8195cfb50eb96ea,
+        type: 3}
+      propertyPath: portal2Portal
+      value: 
+      objectReference: {fileID: 1451724486}
+    - target: {fileID: 3720620589392792853, guid: ead4a41f8a08d4d2c8195cfb50eb96ea,
+        type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1572317128}
@@ -40481,12 +40503,12 @@ PrefabInstance:
     - target: {fileID: 1157873230648474725, guid: e6a3d4d7d0a7a4b89b7554a419212b2a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.1380396
+      value: 8.13
       objectReference: {fileID: 0}
     - target: {fileID: 1157873230648474725, guid: e6a3d4d7d0a7a4b89b7554a419212b2a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.21
+      value: -0.36
       objectReference: {fileID: 0}
     - target: {fileID: 1157873230648474725, guid: e6a3d4d7d0a7a4b89b7554a419212b2a,
         type: 3}

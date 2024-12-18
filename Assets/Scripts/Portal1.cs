@@ -5,15 +5,9 @@ public class Portal1 : MonoBehaviour
     private Vector2 newLocation;
     public GameObject portal2;
     public Portal2 portal2Script;
-    private static Portal1 existingPortal;
 
     void Start()
     {
-        if (existingPortal != null)
-        {
-            Destroy(existingPortal.gameObject);
-        }
-        existingPortal = this;
 
         portal2 = GameObject.Find("Portal2Portal");
         portal2Script = FindObjectOfType<Portal2>();

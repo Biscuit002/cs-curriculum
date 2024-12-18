@@ -5,15 +5,9 @@ public class Portal2 : MonoBehaviour
     private Vector2 newLocation;
     public GameObject portal1;
     public bool inPortal1;
-    private static Portal2 existingPortal;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (existingPortal != null)
-        {
-            Destroy(existingPortal.gameObject);
-        }
-        existingPortal = this;
 
         portal1 = GameObject.Find("Portal1Portal");
         inPortal1 = false;

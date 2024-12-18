@@ -20,8 +20,10 @@ public class PortalProjectile : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerController = FindObjectOfType<PlayerController>();
+        portalColorGraphicScript = FindObjectOfType<PortalColorGraphic>();
         speed = 2f;
         isFiring = false;
+        portal1Portal.transform.position= new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
@@ -42,14 +44,9 @@ public class PortalProjectile : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (isPortal1 == false)
-            {
-                isPortal1 = true;
-            } 
-            else if (isPortal1  != false)
-            {
-                isPortal1 = false;
-            }
+            Debug.Log("E key pressed - attempting to update portal color.");
+            portalColorGraphicScript.UpdatePortalColor();
+            isPortal1 = !isPortal1;
         }
         if (Input.GetMouseButtonUp(1))
         {
@@ -57,7 +54,6 @@ public class PortalProjectile : MonoBehaviour
             Vector2 direction = (targetPosition - transform.position);
             Instantiate(portal1Projectile, transform.position, Quaternion.identity);
             rb.AddForce(direction * speed, ForceMode2D.Impulse);
-            //portalColorGraphicScript.UpdatePortalColor();
         }
     }
 
@@ -68,11 +64,13 @@ public class PortalProjectile : MonoBehaviour
             Destroy(gameObject);
             if (isPortal1 == true)
             {
-                Instantiate(portal1Portal, transform.position, Quaternion.identity);
+                print("portal1");
+                portal1Portal.transform.position = transform.position;
             }
             else if (isPortal1 == false)
             {
-                Instantiate(portal2Portal, transform.position, Quaternion.identity);
+                print("portal2");
+                portal2Portal.transform.position = transform.position;
             }
         }
     }

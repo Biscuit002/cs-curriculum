@@ -16,7 +16,6 @@ public class Switch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print("playerInTrigger: " + playerInTrigger);
         if (playerInTrigger && Input.GetKeyDown(KeyCode.Q))
         {
             print("switching platform");

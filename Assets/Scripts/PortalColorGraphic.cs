@@ -14,12 +14,13 @@ public class PortalColorGraphic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdatePortalColor();
+        //UpdatePortalColor();
     }
 
     // Method to update the portal color
     public void UpdatePortalColor()
     {
+        Debug.Log("UpdatePortalColor() called.");
         if (portalProjectileScript.isPortal1)
         {
             GetComponent<Image>().color = Color.blue;
