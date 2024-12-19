@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CavePlayerScript : MonoBehaviour
@@ -6,6 +7,7 @@ public class CavePlayerScript : MonoBehaviour
     public float length;
     private float jumpForce;
     Rigidbody2D rb;
+    private Vector2 lastPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,7 +16,7 @@ public class CavePlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         length = 0.9f;
         jumpForce = 5;
-    }
+    }  
 
     // Update is called once per frame
     void Update()
@@ -27,6 +29,12 @@ public class CavePlayerScript : MonoBehaviour
         if ((leftRay.collider != null || rightRay.collider != null) && Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+            lastPosition = transform.position;
         }
+        if (transform.position.y < -50)
+        {
+            transform.position = lastPosition;
+        }
+        
     }
 }
