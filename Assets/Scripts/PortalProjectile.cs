@@ -6,7 +6,7 @@ public class PortalProjectile : MonoBehaviour
     private Rigidbody2D rb;
     private float speed;
     private bool isFiring;
-    public bool isPortal1;
+    public static bool isPortal1;
     private Vector3 targetPosition; 
     public GameObject portal1Projectile;
     public GameObject portal1Portal;
@@ -23,7 +23,6 @@ public class PortalProjectile : MonoBehaviour
         portalColorGraphicScript = FindObjectOfType<PortalColorGraphic>();
         speed = 2f;
         isFiring = false;
-        portal1Portal.transform.position= new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
@@ -44,9 +43,8 @@ public class PortalProjectile : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("E key pressed - attempting to update portal color.");
-            portalColorGraphicScript.UpdatePortalColor();
             isPortal1 = !isPortal1;
+            portalColorGraphicScript.UpdatePortalColor();
         }
         if (Input.GetMouseButtonUp(1))
         {
@@ -64,12 +62,10 @@ public class PortalProjectile : MonoBehaviour
             Destroy(gameObject);
             if (isPortal1 == true)
             {
-                print("portal1");
                 portal1Portal.transform.position = transform.position;
             }
             else if (isPortal1 == false)
             {
-                print("portal2");
                 portal2Portal.transform.position = transform.position;
             }
         }

@@ -6,7 +6,7 @@ public class CavePlatform : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        moveSpeed = 0.001f;
+        moveSpeed = 0.01f;
     }
 
     // Update is called once per frame

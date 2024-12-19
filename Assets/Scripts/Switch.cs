@@ -10,7 +10,7 @@ public class Switch : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        cavePlatformScript = FindObjectOfType<CavePlatform>();
+
     }
 
     // Update is called once per frame
@@ -18,7 +18,6 @@ public class Switch : MonoBehaviour
     {
         if (playerInTrigger && Input.GetKeyDown(KeyCode.Q))
         {
-            print("switching platform");
             cavePlatformScript.SwitchPlatform();
         }
     }

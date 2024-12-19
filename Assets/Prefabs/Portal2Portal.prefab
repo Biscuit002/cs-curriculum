@@ -103,7 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portal1: {fileID: 749563067520029388, guid: e6a3d4d7d0a7a4b89b7554a419212b2a, type: 3}
-  inPortal1: 0
+  cooldown: 0
+  cooldownAmount: 0
 --- !u!70 &3784539566324273886
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -138,6 +139,6 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: 0.0066490173}
+  m_Size: {x: 1, y: 2.0229826}
   m_Direction: 0

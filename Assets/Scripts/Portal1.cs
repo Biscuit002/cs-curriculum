@@ -15,23 +15,22 @@ public class Portal1 : MonoBehaviour
 
     void Update()
     {
-       
+      
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && portal2Script.cooldown <= 0)
         {
             newLocation = portal2.transform.position;
             collision.gameObject.transform.position = newLocation;
-            portal2Script.inPortal1 = true;
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            portal2Script.inPortal1 = false;
+            portal2Script.cooldown = portal2Script.cooldownAmount;
         }
     }
 }

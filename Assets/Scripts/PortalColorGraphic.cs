@@ -3,25 +3,24 @@ using UnityEngine.UI;
 
 public class PortalColorGraphic : MonoBehaviour
 {
-    public PortalProjectile portalProjectileScript;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        portalProjectileScript = FindObjectOfType<PortalProjectile>();
+        UpdatePortalColor();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //UpdatePortalColor();
+        
     }
 
     // Method to update the portal color
     public void UpdatePortalColor()
     {
-        Debug.Log("UpdatePortalColor() called.");
-        if (portalProjectileScript.isPortal1)
+        if (PortalProjectile.isPortal1)
         {
             GetComponent<Image>().color = Color.blue;
         }
